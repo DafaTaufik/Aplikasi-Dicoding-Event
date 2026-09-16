@@ -9,26 +9,25 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.df.dicodingevent.R
 import com.df.dicodingevent.data.response.EventItem
-import com.df.dicodingevent.databinding.ItemUpcomingEventBinding
+import com.df.dicodingevent.databinding.ItemEventBinding
 
-class EventAdapter : ListAdapter<EventItem, EventAdapter.EventViewHolder>(DIFF_CALLBACK) {
+class FinishedEventAdapter : ListAdapter<EventItem, FinishedEventAdapter.FinishedViewHolder>(DIFF_CALLBACK) {
 
     var onItemClick: ((EventItem) -> Unit)? = null
 
-    inner class EventViewHolder(private val binding: ItemUpcomingEventBinding) :
+    inner class FinishedViewHolder(private val binding: ItemEventBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         @SuppressLint("SetTextI18n")
         fun bind(event: EventItem) {
             binding.tvEventName.text = event.name
-            binding.tvEventCity.text = event.cityName
-            binding.tvEventQuota.text = "${event.registrants} / ${event.quota} pendaftar"
-            binding.tvEventDate.text = event.beginTime
+            binding.tvEventDescription.text = event.summary
 
             Glide.with(binding.root.context)
                 .load(event.imageLogo)
+//                .placeholder(R.drawable.bg_image_placeholder)
+//                .error(R.drawable.bg_image_placeholder)
                 .into(binding.ivEventImage)
-
 
             binding.root.setOnClickListener {
                 onItemClick?.invoke(event)
@@ -36,26 +35,24 @@ class EventAdapter : ListAdapter<EventItem, EventAdapter.EventViewHolder>(DIFF_C
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
-        val binding = ItemUpcomingEventBinding.inflate(
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FinishedViewHolder {
+        val binding = ItemEventBinding.inflate(
             LayoutInflater.from(parent.context), parent, false
         )
-        return EventViewHolder(binding)
+        return FinishedViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: FinishedViewHolder, position: Int) {
         holder.bind(getItem(position))
     }
 
     companion object {
         val DIFF_CALLBACK = object : DiffUtil.ItemCallback<EventItem>() {
-            override fun areItemsTheSame(oldItem: EventItem, newItem: EventItem): Boolean {
-                return oldItem.id == newItem.id
-            }
+            override fun areItemsTheSame(oldItem: EventItem, newItem: EventItem) =
+                oldItem.id == newItem.id
 
-            override fun areContentsTheSame(oldItem: EventItem, newItem: EventItem): Boolean {
-                return oldItem == newItem
-            }
+            override fun areContentsTheSame(oldItem: EventItem, newItem: EventItem) =
+                oldItem == newItem
         }
     }
 }

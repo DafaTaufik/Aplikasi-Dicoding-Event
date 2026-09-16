@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.df.dicodingevent.databinding.FragmentHomeBinding
 import com.df.dicodingevent.ui.adapter.EventAdapter
+import com.df.dicodingevent.ui.adapter.FinishedEventAdapter
 
 class HomeFragment : Fragment() {
 
@@ -17,6 +18,7 @@ class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private val eventAdapter = EventAdapter()
+    private val finishedEventAdapter = FinishedEventAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,10 +39,12 @@ class HomeFragment : Fragment() {
 
     private fun setupRecyclerView() {
         binding.recyclerViewUpcomingEvents.apply {
-            layoutManager = LinearLayoutManager(
-                requireContext(), LinearLayoutManager.HORIZONTAL, false
-            )
+            layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = eventAdapter
+        }
+        binding.recyclerViewFinishedEvents.apply {
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = finishedEventAdapter
         }
     }
 
@@ -48,15 +52,14 @@ class HomeFragment : Fragment() {
         homeViewModel.upcomingEvents.observe(viewLifecycleOwner) { events ->
             eventAdapter.submitList(events)
         }
-
-        homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            // TODO: tampilkan/sembunyikan ProgressBar sesuai isLoading
+        homeViewModel.finishedEvents.observe(viewLifecycleOwner) { events ->
+            finishedEventAdapter.submitList(events)
         }
-
+        homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            // TODO: progress bar
+        }
         homeViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
-            message?.let {
-                // TODO: tampilkan Toast/Snackbar error
-            }
+            message?.let { /* TODO: toast/snackbar */ }
         }
     }
 
