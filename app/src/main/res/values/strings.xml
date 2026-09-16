@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Dicoding Event</string>
+    <string name="home">Home</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="finished">Finished</string>
+    <string name="upcomingEvents">Upcoming Events</string>
+    <string name="finishedEvents">Finished Events</string>
+    <string name="recommendText">Recommendation event for you!</string>
+    <string name="register">Register</string>
+    <string name="event_image">EventImage</string>
+    <string name="dot_separator">•</string>
+    <string name="label_summary">Summary</string>
+    <string name="label_description">Description</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
