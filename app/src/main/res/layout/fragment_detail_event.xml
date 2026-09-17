@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.DetailEventFragment">
+    android:layout_height="match_parent">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"
@@ -33,8 +31,7 @@
                 app:layout_constraintDimensionRatio="16:9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/backgrounds/scenic" />
+                app:layout_constraintTop_toTopOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_event_name"
@@ -48,8 +45,7 @@
                 android:textColor="@color/text_primary"
                 app:layout_constraintTop_toBottomOf="@id/iv_event_cover"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="DevCoach 243: Code, Lead, or Manage? Choosing Your Engineering Career Path" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_event_category"
@@ -60,8 +56,7 @@
                 android:textSize="12sp"
                 android:textColor="@color/text_secondary"
                 app:layout_constraintTop_toBottomOf="@id/tv_event_name"
-                app:layout_constraintStart_toStartOf="parent"
-                tools:text="Seminar" />
+                app:layout_constraintStart_toStartOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_dot_1"
@@ -84,8 +79,7 @@
                 android:textColor="@color/text_secondary"
                 app:layout_constraintTop_toTopOf="@id/tv_event_category"
                 app:layout_constraintBottom_toBottomOf="@id/tv_event_category"
-                app:layout_constraintStart_toEndOf="@id/tv_dot_1"
-                tools:text="Online" />
+                app:layout_constraintStart_toEndOf="@id/tv_dot_1" />
 
             <TextView
                 android:id="@+id/tv_dot_2"
@@ -109,8 +103,7 @@
                 android:textColor="@color/text_secondary"
                 app:layout_constraintTop_toTopOf="@id/tv_event_category"
                 app:layout_constraintBottom_toBottomOf="@id/tv_event_category"
-                app:layout_constraintStart_toEndOf="@id/tv_dot_2"
-                tools:text="182 / 2000 pendaftar" />
+                app:layout_constraintStart_toEndOf="@id/tv_dot_2" />
 
             <TextView
                 android:id="@+id/tv_event_time"
@@ -123,8 +116,7 @@
                 android:textColor="@color/text_secondary"
                 app:layout_constraintTop_toBottomOf="@id/tv_event_category"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Jumat, 18 Sep 2026, 16:00 - 17:00 WIB" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_summary_label"
@@ -152,8 +144,7 @@
                 android:textColor="@color/text_secondary"
                 app:layout_constraintTop_toBottomOf="@id/tv_summary_label"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="Acara ini sepenuhnya GRATIS dan akan diselenggarakan hari Jumat, 18 September 2026 pukul 16.00 - 17.00 WIB Live di YouTube" />
+                app:layout_constraintEnd_toEndOf="parent"/>
 
             <TextView
                 android:id="@+id/tv_description_label"
@@ -183,8 +174,7 @@
                 app:layout_constraintTop_toBottomOf="@id/tv_description_label"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="Dicoding Developer Coaching kembali hadir..." />
+                app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -195,6 +185,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/black"
         android:text="@string/register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -208,7 +199,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

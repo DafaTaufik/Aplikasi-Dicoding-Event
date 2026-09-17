@@ -10,14 +10,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class FinishedViewModel {
-    private var _finishedEvents = MutableLiveData<List<EventItem>>()
+class FinishedViewModel : ViewModel() {
+    private val _finishedEvents = MutableLiveData<List<EventItem>>()
     val finishedEvents: LiveData<List<EventItem>> = _finishedEvents
 
-    private var _isLoading = MutableLiveData<Boolean>()
+    private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private var _errorMessage = MutableLiveData<String?>()
+    private val _errorMessage = MutableLiveData<String?>()
     val errorMessage: LiveData<String?> = _errorMessage
 
     init {

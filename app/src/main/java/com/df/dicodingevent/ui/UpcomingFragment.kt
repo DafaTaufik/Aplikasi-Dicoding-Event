@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.fragment.app.Fragment
 import com.df.dicodingevent.databinding.FragmentUpcomingBinding
 import com.df.dicodingevent.ui.adapter.EventAdapter
+import androidx.navigation.fragment.findNavController
 
 class UpcomingFragment : Fragment() {
 
@@ -27,9 +30,10 @@ class UpcomingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        upcomingViewModel = UpcomingViewModel()
+        upcomingViewModel = ViewModelProvider(this)[UpcomingViewModel::class.java]
 
         setupRecyclerView()
+        navigateToEventDetail()
         observeViewModel()
     }
 
@@ -37,6 +41,14 @@ class UpcomingFragment : Fragment() {
         binding.recyclerViewUpcomingEventList.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
             adapter = eventAdapter
+        }
+    }
+
+    private fun navigateToEventDetail(){
+        eventAdapter.onItemClick = { event ->
+            val action = UpcomingFragmentDirections
+                .actionNavigationUpcomingToDetailEventFragment(event, false)
+            findNavController().navigate(action)
         }
     }
 
@@ -48,7 +60,9 @@ class UpcomingFragment : Fragment() {
             showShimmer(isLoading)
         }
         upcomingViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
-            message?.let { /* TODO: toast/snackbar */ }
+            message?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

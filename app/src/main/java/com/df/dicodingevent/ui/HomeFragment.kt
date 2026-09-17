@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.df.dicodingevent.databinding.FragmentHomeBinding
 import com.df.dicodingevent.ui.adapter.EventCardAdapter
 import com.df.dicodingevent.ui.adapter.EventAdapter
+import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment() {
 
@@ -46,6 +48,17 @@ class HomeFragment : Fragment() {
             layoutManager = LinearLayoutManager(requireContext())
             adapter = eventAdapter
         }
+        eventCardAdapter.onItemClick = { event ->
+            val action = HomeFragmentDirections
+                .actionNavigationHomeToDetailEventFragment(event, false)
+            findNavController().navigate(action)
+        }
+
+        eventAdapter.onItemClick = { event ->
+            val action = HomeFragmentDirections
+                .actionNavigationHomeToDetailEventFragment(event, true)
+            findNavController().navigate(action)
+        }
     }
 
     private fun observeViewModel() {
@@ -59,7 +72,9 @@ class HomeFragment : Fragment() {
             showShimmer(isLoading)
         }
         homeViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
-            message?.let { /* TODO: toast/snackbar */ }
+            message?.let {
+                Toast.makeText(requireContext(), it, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
