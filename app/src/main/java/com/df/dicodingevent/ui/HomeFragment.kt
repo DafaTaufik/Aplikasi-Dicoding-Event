@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.df.dicodingevent.databinding.FragmentHomeBinding
+import com.df.dicodingevent.ui.adapter.EventCardAdapter
 import com.df.dicodingevent.ui.adapter.EventAdapter
-import com.df.dicodingevent.ui.adapter.FinishedEventAdapter
 
 class HomeFragment : Fragment() {
 
@@ -17,8 +17,8 @@ class HomeFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var homeViewModel: HomeViewModel
+    private val eventCardAdapter = EventCardAdapter()
     private val eventAdapter = EventAdapter()
-    private val finishedEventAdapter = FinishedEventAdapter()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,20 +40,20 @@ class HomeFragment : Fragment() {
     private fun setupRecyclerView() {
         binding.recyclerViewUpcomingEvents.apply {
             layoutManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-            adapter = eventAdapter
+            adapter = eventCardAdapter
         }
         binding.recyclerViewFinishedEvents.apply {
             layoutManager = LinearLayoutManager(requireContext())
-            adapter = finishedEventAdapter
+            adapter = eventAdapter
         }
     }
 
     private fun observeViewModel() {
         homeViewModel.upcomingEvents.observe(viewLifecycleOwner) { events ->
-            eventAdapter.submitList(events)
+            eventCardAdapter.submitList(events)
         }
         homeViewModel.finishedEvents.observe(viewLifecycleOwner) { events ->
-            finishedEventAdapter.submitList(events)
+            eventAdapter.submitList(events)
         }
         homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
             // TODO: progress bar

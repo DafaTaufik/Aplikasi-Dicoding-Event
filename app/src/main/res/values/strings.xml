@@ -4,6 +4,8 @@
     <string name="upcoming">Upcoming</string>
     <string name="finished">Finished</string>
     <string name="upcomingEvents">Upcoming Events</string>
+    <string name="dicodingUpcomingEvent">Dicoding Upcoming Event</string>
+    <string name="dicodingFinishedEvent">Dicoding Finished Event</string>
     <string name="finishedEvents">Finished Events</string>
     <string name="recommendText">Recommendation event for you!</string>
     <string name="register">Register</string>
