@@ -45,15 +45,28 @@ class UpcomingFragment : Fragment() {
             eventAdapter.submitList(events)
         }
         upcomingViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            // TODO: progress bar
+            showShimmer(isLoading)
         }
         upcomingViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
             message?.let { /* TODO: toast/snackbar */ }
         }
     }
 
+    private fun showShimmer(isLoading: Boolean) {
+        if (isLoading) {
+            binding.shimmerUpcomingEvents.startShimmer()
+            binding.shimmerUpcomingEvents.visibility = View.VISIBLE
+            binding.recyclerViewUpcomingEventList.visibility = View.GONE
+        } else {
+            binding.shimmerUpcomingEvents.stopShimmer()
+            binding.shimmerUpcomingEvents.visibility = View.GONE
+            binding.recyclerViewUpcomingEventList.visibility = View.VISIBLE
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.shimmerUpcomingEvents.stopShimmer()
         _binding = null
     }
 }

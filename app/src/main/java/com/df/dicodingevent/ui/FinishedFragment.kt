@@ -44,15 +44,28 @@ class FinishedFragment : Fragment() {
             eventAdapter.submitList(events)
         }
         finishedViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            // TODO: progress bar
+            showShimmer(isLoading)
         }
         finishedViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
             message?.let { /* TODO: toast/snackbar */ }
         }
     }
 
+    private fun showShimmer(isLoading: Boolean) {
+        if (isLoading) {
+            binding.shimmerFinishedEvents.startShimmer()
+            binding.shimmerFinishedEvents.visibility = View.VISIBLE
+            binding.recyclerViewFinishedEventList.visibility = View.GONE
+        } else {
+            binding.shimmerFinishedEvents.stopShimmer()
+            binding.shimmerFinishedEvents.visibility = View.GONE
+            binding.recyclerViewFinishedEventList.visibility = View.VISIBLE
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.shimmerFinishedEvents.stopShimmer()
         _binding = null
     }
 }
