@@ -56,15 +56,37 @@ class HomeFragment : Fragment() {
             eventAdapter.submitList(events)
         }
         homeViewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
-            // TODO: progress bar
+            showShimmer(isLoading)
         }
         homeViewModel.errorMessage.observe(viewLifecycleOwner) { message ->
             message?.let { /* TODO: toast/snackbar */ }
         }
     }
 
+    private fun showShimmer(isLoading: Boolean) {
+        if (isLoading) {
+            binding.shimmerUpcomingEvents.startShimmer()
+            binding.shimmerUpcomingEvents.visibility = View.VISIBLE
+            binding.recyclerViewUpcomingEvents.visibility = View.GONE
+
+            binding.shimmerFinishedEvents.startShimmer()
+            binding.shimmerFinishedEvents.visibility = View.VISIBLE
+            binding.recyclerViewFinishedEvents.visibility = View.GONE
+        } else {
+            binding.shimmerUpcomingEvents.stopShimmer()
+            binding.shimmerUpcomingEvents.visibility = View.GONE
+            binding.recyclerViewUpcomingEvents.visibility = View.VISIBLE
+
+            binding.shimmerFinishedEvents.stopShimmer()
+            binding.shimmerFinishedEvents.visibility = View.GONE
+            binding.recyclerViewFinishedEvents.visibility = View.VISIBLE
+        }
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
+        binding.shimmerUpcomingEvents.stopShimmer()
+        binding.shimmerFinishedEvents.stopShimmer()
         _binding = null
     }
 }
