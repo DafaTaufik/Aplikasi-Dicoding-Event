@@ -57,15 +57,11 @@ class DetailEventFragment : Fragment() {
             .load(event.mediaCover)
             .into(binding.ivEventCover)
 
-        if (isFinished) {
-            binding.btnRegister.visibility = View.GONE
-        } else {
-            binding.btnRegister.visibility = View.VISIBLE
-            binding.btnRegister.setOnClickListener {
-                event.link.let { url ->
-                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
-                    startActivity(intent)
-                }
+        binding.btnRegister.visibility = View.VISIBLE
+        binding.btnRegister.setOnClickListener {
+            event.link.let { url ->
+                val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+                startActivity(intent)
             }
         }
         ViewCompat.setOnApplyWindowInsetsListener(binding.btnRegister) { v, insets ->
