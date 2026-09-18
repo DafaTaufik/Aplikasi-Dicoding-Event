@@ -56,7 +56,6 @@ class DetailEventFragment : Fragment() {
             .load(event.mediaCover)
             .into(binding.ivEventCover)
 
-        binding.btnRegister.visibility = View.VISIBLE
         binding.btnRegister.setOnClickListener {
             event.link.let { url ->
                 val intent = Intent(Intent.ACTION_VIEW, url.toUri())
