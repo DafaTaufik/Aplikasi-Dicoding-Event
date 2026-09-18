@@ -6,7 +6,7 @@
     </style>
 
     <style name="Theme.DicodingEvent" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimary">@color/black</item>
         <item name="colorOnPrimary">@color/white</item>
         <item name="colorSecondary">@color/black</item>
         <item name="android:colorBackground">@color/white</item>
