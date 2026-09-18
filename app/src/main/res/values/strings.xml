@@ -7,6 +7,8 @@
     <string name="dicodingUpcomingEvent">Dicoding Upcoming Event</string>
     <string name="dicodingFinishedEvent">Dicoding Finished Event</string>
     <string name="finishedEvents">Finished Events</string>
+    <string name="organized_by">Diselenggarakan oleh %1$s</string>
+    <string name="remaining_quota">Sisa kuota: %1$d</string>
     <string name="recommendText">Recommendation event for you!</string>
     <string name="register">Register</string>
     <string name="event_image">EventImage</string>

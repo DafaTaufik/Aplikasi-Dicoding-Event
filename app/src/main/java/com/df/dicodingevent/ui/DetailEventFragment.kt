@@ -36,14 +36,16 @@ class DetailEventFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val event = args.event
+        val remainingQuota = event.quota - event.registrants
         val isFinished = args.isFinished
         val cleanedDescription = event.description
             .replace(Regex("<img[^>]*>"), "")
 
         binding.tvEventName.text = event.name
+        binding.tvEventOwner.text = getString(R.string.organized_by, event.ownerName)
         binding.tvEventCategory.text = event.category
         binding.tvEventCity.text = event.cityName
-        binding.tvEventQuota.text = "${event.registrants} / ${event.quota} pendaftar"
+        binding.tvEventQuota.text = getString(R.string.remaining_quota, remainingQuota)
         binding.tvEventTime.text = "${event.beginTime} - ${event.endTime}"
         binding.tvEventSummary.text = event.summary
         binding.tvEventDescription.text = HtmlCompat.fromHtml(
