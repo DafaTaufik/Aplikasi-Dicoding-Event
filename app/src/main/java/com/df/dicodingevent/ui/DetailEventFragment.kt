@@ -37,7 +37,6 @@ class DetailEventFragment : Fragment() {
 
         val event = args.event
         val remainingQuota = event.quota - event.registrants
-        val isFinished = args.isFinished
         val cleanedDescription = event.description
             .replace(Regex("<img[^>]*>"), "")
 
